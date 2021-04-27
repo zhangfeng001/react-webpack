@@ -24,18 +24,63 @@ npm run build
 - 使用webpack搭建，非脚手架，
   
 ## 项目目录
-- REACT-WEBPACK
-    - publick  入口html
-    - src 
-        - components 公共组件
-        - image 项目图片
-        - mock 模拟数据
-        - pages 页面
-        - router 路由管理
-        - server 接口请求
-        - static 静态资源
-        - store  状态管理
-        - style  css样式
-        - utils  公共方法
-        - index.js 入口js
+|-- react-webpack
+    |-- .gitignore
+    |-- package-lock.json
+    |-- package.json
+    |-- README.md
+    |-- webpack.config.js
+    |-- yarn.lock
+    |-- public
+    |   |-- index.html
+    |-- src
+        |-- index.js
+        |-- components
+        |   |-- Homechild.js
+        |   |-- menu.js
+        |-- images
+        |   |-- img
+        |       |-- bmw.jpg
+        |       |-- star-sky.jpg
+        |-- mock
+        |   |-- menuTree.js
+        |-- pages
+        |   |-- Todolist.js
+        |   |-- home
+        |   |   |-- Home.js
+        |   |   |-- Home.scss
+        |   |-- list
+        |   |   |-- index.js
+        |   |-- login
+        |   |   |-- index.js
+        |   |   |-- login.css
+        |   |-- page1
+        |   |   |-- index.js
+        |   |-- page2
+        |   |   |-- index.js
+        |   |-- page3
+        |   |   |-- index.js
+        |   |-- test
+        |       |-- Home.js
+        |-- router
+        |   |-- router.js
+        |-- server
+        |   |-- axios.js
+        |   |-- baseUrl.js
+        |   |-- api
+        |       |-- list.js
+        |       |-- user.js
+        |-- static
+        |   |-- 1.text
+        |-- store
+        |   |-- actionCreators.js
+        |   |-- actionTypes.js
+        |   |-- index.js
+        |   |-- reducer.js
+        |-- style
+        |   |-- main.css
+        |-- utils
+            |-- auth.js
+
+  
   
