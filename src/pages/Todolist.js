@@ -7,7 +7,7 @@ const TodoList = (props) => {
     const { inputValue,list, changeInputValue,submitInputValue,deleteItem} = props
     const layout = {
         labelCol: { span: 8 },
-        wrapperCol: { span: 16 },
+        wrapperCol: { span: 8 },
     };
     const tailLayout = {
         wrapperCol: { offset: 8, span: 16 },
@@ -67,7 +67,7 @@ const TodoList = (props) => {
 const mapStateToProps = (state) => {
     return {
         inputValue:state.inputValue,
-        list:state.list
+        list:state.todoList
     }
 }
 // store.dispatch , props 派发
@@ -86,7 +86,6 @@ const mapDispatchToProps = (dispatch) => {
             const action = deleteItemAction(index)
             dispatch(action)
         }
-
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(TodoList)

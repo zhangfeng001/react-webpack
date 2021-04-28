@@ -8,16 +8,12 @@ git clone https://github.com/zhangfeng001/react-webpack.git
 npm install 
 ```
 
-## 启动本地服务器
+## 命令
 ```
-npm run start
-```
-
-## 打包发布
-
-```
+npm run start 
 npm run build
 ```
+
 ## 项目搭建
 
 - 使用webpack搭建，非脚手架，
@@ -34,8 +30,29 @@ npm run build
 -  [x]  左侧折叠菜单实现
 
 ## 生命周期新旧
+- 16版本之前生命周期
+![16版本之前生命周期](https://upload-images.jianshu.io/upload_images/5287253-315eac1c26082f08.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp "16版本之前生命周期")
 
-  
+   - init constructor(){super()}
+   - componentWillMount
+   - render()
+   - componentDidMount()
+   - componentWillReceiveProps()
+   - shouldComponentUpdate()
+   - componentWillUpdate()
+   - render()
+   - componentDidUpdate()
+   - componentWillUnMount()
+
+- React v16.4+ 的生命周期图
+![16.4版本之前生命周期](https://upload-images.jianshu.io/upload_images/5287253-19b835e6e7802233.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp "16.4版本之前生命周期")
+- 除了shouldComponentUpdate，其他在render函数之前的所有函数（componentWillMount，componentWillReceiveProps，componentWillUpdate）都被getDerivedStateFromProps替代。
+   - getDerivedStateFromProps前面要加上static保留字，声明为静态方法，不然会被react忽略掉
+   - this 为 undefined
+- getSnapshotBeforeUpdate() 被调用于render之后，可以读取但无法使用DOM的时候
+ - 参考 https://www.jianshu.com/p/514fe21b9914
+
+
 ## 项目目录
 
     |-- .gitignore                    //忽略git上传

@@ -1,6 +1,7 @@
 const defaultState = {
     inputValue:'',
-    list:[]
+    todoList:[],
+    tableList:[],
 }
 export default (state = defaultState,action) => {
     if( action.type === 'change_input_value' ){
@@ -11,7 +12,7 @@ export default (state = defaultState,action) => {
     if( action.type === 'add_item' ){
         const newState = JSON.parse(JSON.stringify(state))
         if(newState.inputValue != ''){
-            newState.list.push(newState.inputValue)
+            newState.todoList.push(newState.inputValue)
             newState.inputValue = ''
             return newState
         }
@@ -19,7 +20,16 @@ export default (state = defaultState,action) => {
     }
     if( action.type === 'delete_item' ){
         const newState = JSON.parse(JSON.stringify(state))
-        newState.list.splice(action.index,1)
+        newState.todoList.splice(action.index,1)
+        return newState
+    }
+    // 储存list
+    if( action.type === 'get_data_success' ){
+        console.log('2-1')
+        console.log(action)
+        const newState = JSON.parse(JSON.stringify(state))
+        newState.tableList = action.value;
+        console.log('newState.tableList',newState.tableList)
         return newState
     }
     return state 

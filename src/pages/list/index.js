@@ -1,27 +1,20 @@
 import React,{Fragment} from 'react'
+import { connect } from 'react-redux'
 import { Table, Tag, Space } from 'antd';
-import { getArticleList } from "../../server/api/list";
+import { getListAction } from '../../store/actionCreators'
+import store from "../../store";
+
 class List extends React.Component {
     constructor(props){
         super(props)
         this.state={
             content:'this is list page',
-            tableData:[]
         }
+        
     }
-    componentDidMount() {
-        getArticleList('123').then(
-           (res) => {
-               console.log("get article response:", res);
-               this.setState({
-                    tableData:res.data
-               })
-           },
-          (error) => {
-               console.log("get response failed!");
-           }
-        );
-     }
+    componentDidMount(){
+      this.props.getMenuTreeFn();
+    }
     //  我们应该在组件销毁的时候将异步方法撤销
      componentWillUnmount(){
       this.setState = (state, callback) => {
@@ -66,11 +59,24 @@ class List extends React.Component {
         return(
             <Fragment>
                 {
-                  this.state.tableData ? <Table rowKey={recode => recode.acName} columns={columns} dataSource={this.state.tableData} /> : ''
+                  this.props.tableList ? <Table rowKey={recode => recode.acName} columns={columns} dataSource={this.props.tableList} /> : ''
                 }
                 
             </Fragment>
         )
     }
 } 
-export default List;
+
+// store中的数据与组件的数据做映射
+const mapStateToProps = (state) => {
+  return {
+    tableList:state.tableList
+  }
+}
+// store.dispatch , props 派发
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getMenuTreeFn: () => dispatch(getListAction()) 
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(List)
