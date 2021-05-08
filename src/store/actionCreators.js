@@ -2,8 +2,9 @@
 import {
   CHANGE_INPUT_VALUE,
   ADD_ITEM, 
-  DELETE_ITE,
-  GET_DATA_SUCCESS
+  DELETE_ITEM,
+  GET_DATA_SUCCESS,
+  SAVE_USER
 } from './actionTypes'
 import http from '../server/axios';
 import { getArticleList } from '../server/api/list'
@@ -19,11 +20,22 @@ export const deleteItemAction = (index) => ({
     type:DELETE_ITEM,
     index
 })
+export const saveUserAction = (value) => ({
+  type:SAVE_USER,
+  value
+})
+
+//存用户信息
+
+
+
+
+
+// 异步
 export const setListAction = (value) => ({
   type:GET_DATA_SUCCESS,
   value
 })
-// 异步
  // 先通过dispath发起一个异步， react-thunk 处理异步拿到 responseData 以后 发起一个同步dispath 更改state
 export const getListAction = () => (dispatch) => {
   getArticleList().then(res => {

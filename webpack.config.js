@@ -36,6 +36,7 @@ module.exports = env => {
         "@pages": path.join(__dirname, "./src/pages"),
         "@router": path.join(__dirname, "./src/router"),
         "@components": path.join(__dirname, "./src/components"),
+        "@store": path.join(__dirname, "./src/store"),
       },
     },
     /**配置模块*/

@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { HashRouter, Route, Switch, Redirect,Link } from "react-router-dom";
 import { Layout } from "antd";
+import { connect } from 'react-redux'
+
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -68,7 +70,9 @@ class Home extends Component {
                   )}
                 </div>
                 <div className="rig-userInfo">
-                  <Link to='/'>登录</Link>
+                  <span style={{marginRight:"50px"}}>欢迎你  {this.props.username} </span>
+
+                  <Link to='/'>退出登录</Link>
                 </div>
               </Header>
               <Content
@@ -86,5 +90,11 @@ class Home extends Component {
     );
   }
 }
-
-export default Home;
+// store中的数据与组件的数据做映射
+const mapStateToProps = (state) => {
+  const userName = localStorage.getItem('username')
+  return {
+    username: state.userInfo.username ? state.userInfo.username:userName,
+  }
+}
+export default connect(mapStateToProps,null)(Home);

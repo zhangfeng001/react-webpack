@@ -2,6 +2,7 @@ const defaultState = {
     inputValue:'',
     todoList:[],
     tableList:[],
+    userInfo:{}
 }
 export default (state = defaultState,action) => {
     if( action.type === 'change_input_value' ){
@@ -25,11 +26,16 @@ export default (state = defaultState,action) => {
     }
     // 储存list
     if( action.type === 'get_data_success' ){
-        console.log('2-1')
-        console.log(action)
         const newState = JSON.parse(JSON.stringify(state))
         newState.tableList = action.value;
         console.log('newState.tableList',newState.tableList)
+        return newState
+    }
+    // 储存用户信息
+    if( action.type === 'save_user' ){
+        const newState = JSON.parse(JSON.stringify(state))
+        newState.userInfo = action.value;
+        console.log('newState.userInfo',newState.userInfo)
         return newState
     }
     return state 

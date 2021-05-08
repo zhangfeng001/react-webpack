@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react'
 import { HashRouter, Route,Switch,withRouer } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { saveUserAction } from '../../store/actionCreators'
 import { Form, Input, Button, Checkbox,Spin } from 'antd';
 import md5 from 'md5'
 import './login.css'
@@ -49,7 +51,12 @@ class Login extends Component {
             this.setState({
               showLoading:false
             })
+            this.props.saveUserInfo({
+              username: values.username,
+              password: values.password,
+            });
             this.props.history.push('/Home')
+
           // }
         },
         (error) => {
@@ -83,7 +90,7 @@ class Login extends Component {
               <Form.Item
                 label="Username"
                 name="username"
-                value={this.state.userName}
+                value={this.state.username}
                 rules={[
                   {
                     required: true,
@@ -126,4 +133,17 @@ class Login extends Component {
     )
   }
 }
-export default Login;
+
+// store.dispatch , props 派发
+const mapDispatchToProps = (dispatch) => {
+  return {
+      saveUserInfo(e) {
+        localStorage.setItem('username',e.username)
+        const action = saveUserAction({
+          username: e.username,
+        })
+        dispatch(action)
+      },
+  }
+}
+export default connect(null,mapDispatchToProps)(Login);
