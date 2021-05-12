@@ -1,6 +1,7 @@
 import React from 'react'
 import { HashRouter, Route,Link,Redirect,Switch } from 'react-router-dom';
 import Login from '../login/index'
+import TestUseState from '@pages/hook/useState/test.js'
 class Page1 extends React.Component {
     constructor(props){
         super(props)
@@ -20,6 +21,7 @@ class Page1 extends React.Component {
                 <div>
                     <Link to='/Page2'>去page2</Link>
                 </div>
+                <TestUseState/>
             </div>
         )
     }
